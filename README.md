@@ -159,14 +159,6 @@ bundle exec rspec spec/jobs/record_search_job_spec.rb
 - `ip_address` (string) - User's IP address
 - `created_at` (datetime) - When search was performed
 
-## Deployment
-
-The application is configured for deployment with:
-
-- **Kamal** for containerized deployment
-- **Solid Cache/Queue/Cable** for production scaling
-- **Thruster** for asset optimization
-
 ## Environment Variables
 
 ```bash
