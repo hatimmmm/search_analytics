@@ -55,6 +55,10 @@ RUN npm ci --only=production
 # Copy application code
 COPY . .
 
+# Build CSS and JS assets before Rails precompilation
+RUN npm run build:css
+RUN npm run build
+
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 
