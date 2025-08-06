@@ -1,0 +1,48 @@
+<div class="min-h-screen bg-gray-100 p-4 sm:p-6 lg:p-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-900">Search Analytics</h1>
+      <%= link_to "Back to Search", root_path, class: "px-4 py-2 bg-white text-gray-700 border border-gray-300 font-semibold rounded-lg shadow-sm hover:bg-gray-50 transition" %>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Top Searches Card -->
+      <div class="lg:col-span-2 bg-white rounded-xl shadow-md p-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Top 20 Overall Searches</h2>
+        <% if @top_searches.empty? %>
+          <p class="text-gray-500">No search data yet. Try searching on the home page!</p>
+        <% else %>
+          <ul class="space-y-4">
+            <% @top_searches.each_with_index do |(query, count), index| %>
+              <li class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <span class="text-sm font-bold text-gray-500 w-8 text-center"><%= index + 1 %>.</span>
+                  <p class="text-gray-700 ml-4"><%= query %></p>
+                </div>
+                <span class="text-sm font-semibold bg-blue-100 text-blue-800 px-3 py-1 rounded-full"><%= count %></span>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+
+      <!-- User's Recent Searches Card -->
+      <div class="bg-white rounded-xl shadow-md p-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Your Recent Searches</h2>
+        <p class="text-sm text-gray-500 mb-4">Based on your IP: <%= request.remote_ip %></p>
+        <% if @user_recent_searches.empty? %>
+          <p class="text-gray-500">You haven't searched for anything yet.</p>
+        <% else %>
+          <ul class="space-y-3">
+            <% @user_recent_searches.each do |search| %>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-gray-400 mt-0.5 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                <p class="text-gray-700"><%= search.query %></p>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
