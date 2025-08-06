@@ -49,15 +49,11 @@ RUN bundle install && \
     bundle exec bootsnap precompile --gemfile
 
 # Install node modules
-COPY package.json package-lock.json ./
-RUN npm ci --only=production
+COPY package.json yarn.lock ./
+RUN yarn install --immutable
 
 # Copy application code
 COPY . .
-
-# Build CSS and JS assets before Rails precompilation
-RUN npm run build:css
-RUN npm run build
 
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
