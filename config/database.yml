@@ -27,3 +27,7 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+cable:
+  adapter: sqlite3
+  database: storage/cable.sqlite3
