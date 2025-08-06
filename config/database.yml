@@ -39,10 +39,3 @@ queue:
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   url: <%= ENV['DATABASE_URL'] %>
-
-cache:
-  adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
-  namespace: <%= Rails.env %>
-  pool_size: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  pool_timeout: 5
