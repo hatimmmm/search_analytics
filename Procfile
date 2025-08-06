@@ -1,2 +1,2 @@
 web: rake db:migrate && rake db:seed && bundle exec rails server -p $PORT -e $RAILS_ENV
-worker: bundle exec sidekiq
+worker: bundle exec sidekiq -c 2
