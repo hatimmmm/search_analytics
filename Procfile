@@ -1,2 +1,3 @@
-web: rake db:migrate && rake db:seed && bundle exec rails server -p $PORT -e $RAILS_ENV
-worker: bundle exec sidekiq -c 2
+release: npm run build:css && rails db:migrate
+web: bundle exec rails server -p $PORT -e $RAILS_ENV
+worker: bundle exec sidekiq
