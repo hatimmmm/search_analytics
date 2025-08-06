@@ -333,14 +333,6 @@ GEM
       logger (>= 1.6.2)
       rack (>= 3.1.0)
       redis-client (>= 0.23.2)
-    sprockets (4.2.2)
-      concurrent-ruby (~> 1.0)
-      logger
-      rack (>= 2.2.4, < 4)
-    sprockets-rails (3.5.2)
-      actionpack (>= 6.1)
-      activesupport (>= 6.1)
-      sprockets (>= 3.0.0)
     sqlite3 (2.7.3-aarch64-linux-gnu)
     sqlite3 (2.7.3-aarch64-linux-musl)
     sqlite3 (2.7.3-arm-linux-gnu)
@@ -429,8 +421,6 @@ DEPENDENCIES
   rubocop-rails-omakase
   selenium-webdriver
   sidekiq
-  sprockets (>= 3.0.0)
-  sprockets-rails (~> 3.4)
   sqlite3 (>= 2.1)
   stimulus-rails
   tailwindcss-rails
