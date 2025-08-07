@@ -24,7 +24,14 @@ module SearchAnalytics
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.active_job.queue_adapter = :sidekiq
-    config.cache_store = :redis_cache_store, { url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } }
-    config.secret_key_base = ENV["SECRET_KEY_BASE"] || Rails.application.credentials.secret_key_base
+    redis_config = {
+      url: ENV.fetch("REDIS_URL", "redis://localhost:6379/1"),
+    }
+
+    if ENV["REDIS_URL"]&.start_with?("rediss://")
+      redis_config[:ssl_params] = { verify_mode: OpenSSL::SSL::VERIFY_NONE }
+    end
+
+    config.cache_store = :redis_cache_store, redis_config
   end
 end
