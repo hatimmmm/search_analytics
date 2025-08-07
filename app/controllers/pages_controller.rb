@@ -9,10 +9,11 @@ class PagesController < ApplicationController
                           .limit(20)
                           .count(:query)
 
+    # Fix: Include created_at in select since we're ordering by it
     @user_recent_searches = Search.where(ip_address: request.remote_ip)
-                                  .order(created_at: :desc)
-                                  .select(:query)
+                                  .select(:query, :created_at)
                                   .distinct
+                                  .order(created_at: :desc)
                                   .limit(10)
   end
 end
